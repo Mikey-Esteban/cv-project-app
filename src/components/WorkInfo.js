@@ -28,14 +28,14 @@ const WorkInfo = () => {
   ]
 
   return (
-    <div className="container px-6 mx-auto max-w-screen-md">
+    <div className="container px-6 mx-auto max-w-screen-lg">
       <h2 className='uppercase'>Computer Programmer</h2>
       <h1 className='text-center title'>entry-level computer programmer</h1>
-      <ul className='list-disc list-inside'>
+      <ul className='list-disc list-inside pl-6'>
         {
           data.map(info => {
             return (
-              <EditableLI id={info.id} title={info.title} description={info.details} />
+              <EditableLI key={info.id} id={info.id} title={info.title} description={info.details} />
             )
           })
         }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import EditableLIForm from './EditableLIForm'
+import EditableForm from './EditableForm'
 
-class EditableLI extends Component {
+class Editable extends Component {
 
   constructor(props) {
     super(props)
@@ -40,7 +40,7 @@ class EditableLI extends Component {
 
     if (this.state.viewForm === false) {
       return (
-        <li id={id}>
+        <div id={id}>
           <span className="font-bold">{title} </span>
           <span>{description}
             <button className="btn-level"
@@ -48,11 +48,11 @@ class EditableLI extends Component {
               <i className="fas fa-edit"></i>
             </button>
           </span>
-        </li>
+        </div>
       )
     } else {
       return (
-          <EditableLIForm title={title}
+          <EditableForm title={title}
                 description={description}
                 handleSubmission={this.handleSubmission} />
       )
@@ -61,4 +61,4 @@ class EditableLI extends Component {
 
 }
 
-export default EditableLI
+export default Editable
