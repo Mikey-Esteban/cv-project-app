@@ -1,14 +1,18 @@
 // import './App.css';
+import React from "react";
 import TailwindHW from './components/TailwindHW'
 import PersonalInfo from './components/PersonalInfo'
-import RoleTitle from './components/RoleTitle'
+import WorkInfo from './components/WorkInfo'
+// App.js - Input editable UI
+
 
 function App() {
+
   return (
     <div className="App">
       <TailwindHW />
       <PersonalInfo />
-      <RoleTitle />
+      <WorkInfo />
     </div>
   );
 }

@@ -52,7 +52,7 @@ class PersonalInfo extends Component {
 
     if (this.state.viewForm === false) {
       return (
-        <div className="text-center">
+        <div className="text-center mb-2">
           <h1 className="title">{name}</h1>
           <p>{location}</p>
           <p>{phone}</p>

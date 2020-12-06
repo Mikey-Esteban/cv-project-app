@@ -3,7 +3,9 @@
 .btn {
   @apply block text-white uppercase text-xs mx-auto p-2 rounded;
 }
-
+.btn-level {
+  @apply inline-block text-white uppercase text-xs mx-auto p-2 rounded text-purple-300;
+}
 .btn-purple {
   @apply bg-purple-300;
 }
