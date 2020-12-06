@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
+.btn {
+  @apply block text-white uppercase text-xs mx-auto p-2 rounded;
+}
+
+.btn-purple {
+  @apply bg-purple-300;
+}
+
+.btn-purple:hover {
+  @apply hover:bg-purple-500;
+}
+
+.title {
+  @apply text-indigo-400 text-lg font-medium
+}
+
+p {
+  @apply text-gray-500
+}
+
 @tailwind utilities;
