@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import EditableForm from './EditableForm'
+import EditableLIForm from './EditableLIForm'
 
-class Editable extends Component {
+class EditableLI extends Component {
 
   constructor(props) {
     super(props)
@@ -52,7 +52,7 @@ class Editable extends Component {
       )
     } else {
       return (
-          <EditableForm title={title}
+          <EditableLIForm title={title}
                 description={description}
                 handleSubmission={this.handleSubmission} />
       )
@@ -61,4 +61,4 @@ class Editable extends Component {
 
 }
 
-export default Editable
+export default EditableLI

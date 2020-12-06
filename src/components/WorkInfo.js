@@ -1,5 +1,5 @@
 import React from 'react'
-import Editable from './Editable'
+import EditableLI from './EditableLI'
 import { v4 as uuid } from 'uuid';
 
 const WorkInfo = () => {
@@ -35,7 +35,7 @@ const WorkInfo = () => {
         {
           data.map(info => {
             return (
-              <Editable id={info.id} title={info.title} description={info.details} />
+              <EditableLI id={info.id} title={info.title} description={info.details} />
             )
           })
         }
