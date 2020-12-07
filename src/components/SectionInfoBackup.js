@@ -98,8 +98,6 @@ class SectionInfoBackup extends Component {
 
         { viewHeaderForm && <EditableFormBackup handleSubmission={this.handleHeaderSubmission} />}
 
-        { headerTitle && <h1 className='text-center title'>{headerTitle}</h1> }
-
         { headerData &&
           headerData.map(obj => {
             return (

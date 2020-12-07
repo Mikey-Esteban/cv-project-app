@@ -25,10 +25,4 @@ const techListData = [
   }
 ]
 
-const techHeaderData = [
-  {
-    list: techListData
-  }
-]
-
-export { techTitle, techHeaderData, techListData }
+export { techTitle, techListData }

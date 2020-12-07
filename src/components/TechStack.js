@@ -10,6 +10,7 @@ class TechStack extends Component {
 
     this.state = {
       title: props.title,
+      headerTitle: props.headerTitle,
       list: props.listData,
       viewForm: false
     }
@@ -38,10 +39,13 @@ class TechStack extends Component {
 
 
   render() {
-    const { title, list } = this.state;
+    const { title, headerTitle, list } = this.state;
     return (
       <div className="container px-6 mx-auto max-w-screen-lg mb-6">
         <h2 className="header-title mb-4">{title}</h2>
+
+        { headerTitle && <h1 className='text-center title'>{headerTitle}</h1> }
+        
         <ul className='list-disc list-inside pl-6'>
         {
            list.map(item => <EditableLI key={item.id} id={item.id} title={item.title} description={item.details} />)
