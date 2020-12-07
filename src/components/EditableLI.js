@@ -18,6 +18,11 @@ class EditableLI extends Component {
     this.setState({ viewForm: true })
   }
 
+  handleDelete = event => {
+    const li = event.target.parentNode.parentNode.parentNode;
+    li.remove();
+  }
+
   handleSubmission = event => {
 
     const title = document.getElementById('title').value;
@@ -46,7 +51,7 @@ class EditableLI extends Component {
               <i className="fas fa-edit"></i>
             </button>
             <button className="btn-level"
-              onClick={ () => alert('hello')}>
+              onClick={this.handleDelete}>
               <i className="far fa-trash-alt"></i>
             </button>
           </span>
