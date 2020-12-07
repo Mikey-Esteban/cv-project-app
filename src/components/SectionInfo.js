@@ -7,8 +7,8 @@ const SectionInfo = (props) => {
   const { title, headerTitle, headerData, listData } = props
 
   return (
-    <div className="container px-6 mx-auto max-w-screen-lg">
-      <h2>{title}</h2>
+    <div className="container px-6 mx-auto max-w-screen-lg mb-6">
+      <h2 className="header-title mb-4">{title}</h2>
       { headerTitle && <h1 className='text-center title'>{headerTitle}</h1> }
       { headerData &&
         headerData.map(info => {

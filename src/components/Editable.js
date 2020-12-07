@@ -39,8 +39,8 @@ class Editable extends Component {
     if (this.state.viewForm === false) {
       return (
         <div id={id}>
-          <span className="font-bold">{title} </span>
-          <span>{description}
+          <span className="font-medium text-gray-500">{title} </span>
+          <span className="text-gray-500">{description}
             <button className="btn-level"
               onClick={this.handleFormSwitch}>
               <i className="fas fa-edit"></i>

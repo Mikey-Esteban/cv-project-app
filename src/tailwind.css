@@ -17,6 +17,9 @@
 .title {
   @apply text-indigo-400 text-lg font-medium uppercase
 }
+.header-title {
+  @apply uppercase text-indigo-400 text-sm
+}
 
 p {
   @apply text-gray-500
