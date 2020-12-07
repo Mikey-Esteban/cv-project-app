@@ -2,10 +2,10 @@
 import React from "react";
 import TailwindHW from './components/TailwindHW'
 import PersonalInfo from './components/PersonalInfo'
-import WorkInfo from './components/WorkInfo'
-import EducationInfo from './components/EducationInfo'
-import InternshipInfo from './components/InternshipInfo'
-// App.js - Input editable UI
+import SectionInfo from './components/SectionInfo'
+import { workTitle, workHeaderTitle, workListData } from './components/data/workData'
+import { eduTitle, eduHeaderData, eduListData } from './components/data/educationData'
+import { internTitle, internHeaderData, internListData} from './components/data/internshipData'
 
 
 function App() {
@@ -14,9 +14,9 @@ function App() {
     <div className="App">
       <TailwindHW />
       <PersonalInfo />
-      <WorkInfo />
-      <EducationInfo />
-      <InternshipInfo />
+      <SectionInfo title={workTitle} headerTitle={workHeaderTitle} listData={workListData} />
+      <SectionInfo title={eduTitle} headerData={eduHeaderData} listData={eduListData} />
+      <SectionInfo title={internTitle} headerData={internHeaderData} listData={internListData} />
     </div>
   );
 }
