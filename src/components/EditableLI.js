@@ -41,9 +41,13 @@ class EditableLI extends Component {
         <li id={id}>
           <span className="font-semibold text-gray-500">{title} </span>
           <span className="text-gray-500">{description}
-            <button className="btn-level"
+            <button className="btn-level ml-1"
               onClick={this.handleFormSwitch}>
               <i className="fas fa-edit"></i>
+            </button>
+            <button className="btn-level"
+              onClick={ () => alert('hello')}>
+              <i className="far fa-trash-alt"></i>
             </button>
           </span>
         </li>

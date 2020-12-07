@@ -24,6 +24,10 @@ const SectionInfo = (props) => {
           })
         }
       </ul>
+      <button className='ml-6'>
+        <i className="fas fa-plus text-purple-300"></i>
+        <span className="ml-6 text-purple-300">Add to list</span>
+      </button>
     </div>
   )
 
