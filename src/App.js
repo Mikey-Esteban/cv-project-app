@@ -2,13 +2,12 @@
 import React from "react";
 import TailwindHW from './components/TailwindHW'
 import PersonalInfo from './components/PersonalInfo'
-import SectionInfo from './components/SectionInfo'
-import SectionInfoBackup from './components/SectionInfoBackup'
-import TechStack from './components/TechStack'
-import { workTitle, workHeaderTitle, workListData } from './components/data/workDataBackup'
-import { eduTitle, eduHeaderData , eduListData} from './components/data/educationDataBackup'
-import { internTitle, internHeaderData, internListData } from './components/data/internshipDataBackup'
-import { techTitle, techListData } from './components/data/techStackDataBackup'
+import SingleUL from './components/SingleUL'
+import MultipleULs from './components/MultipleULs'
+import { workTitle, workHeaderTitle, workListData } from './components/data/workData'
+import { eduTitle, eduHeaderData } from './components/data/educationData'
+import { internTitle, internHeaderData } from './components/data/internshipData'
+import { techTitle, techListData } from './components/data/techStackData'
 
 
 function App() {
@@ -17,10 +16,10 @@ function App() {
     <div className="App">
       <TailwindHW />
       <PersonalInfo />
-      <TechStack title={workTitle} headerTitle={workHeaderTitle} listData={workListData} />
-      <SectionInfoBackup title={eduTitle} headerData={eduHeaderData} listData={eduListData} />
-      <SectionInfoBackup title={internTitle} headerData={internHeaderData} listData={internListData} />
-      <TechStack title={techTitle} listData={techListData}/>
+      <SingleUL title={workTitle} headerTitle={workHeaderTitle} listData={workListData} />
+      <MultipleULs title={eduTitle} headerData={eduHeaderData} />
+      <MultipleULs title={internTitle} headerData={internHeaderData} />
+      <SingleUL title={techTitle} listData={techListData}/>
     </div>
   );
 }

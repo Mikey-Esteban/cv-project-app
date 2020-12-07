@@ -3,7 +3,7 @@ import EditableLI from './EditableLI'
 import EditableLIForm from './EditableLIForm'
 import { v4 as uuid } from 'uuid';
 
-class TechStack extends Component {
+class SingleUL extends Component {
 
   constructor(props) {
     super(props)
@@ -45,7 +45,7 @@ class TechStack extends Component {
         <h2 className="header-title mb-4">{title}</h2>
 
         { headerTitle && <h1 className='text-center title'>{headerTitle}</h1> }
-        
+
         <ul className='list-disc list-inside pl-6'>
         {
            list.map(item => <EditableLI key={item.id} id={item.id} title={item.title} description={item.details} />)
@@ -63,4 +63,4 @@ class TechStack extends Component {
 
 }
 
-export default TechStack
+export default SingleUL

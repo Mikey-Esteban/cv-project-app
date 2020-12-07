@@ -48,9 +48,9 @@ class PersonalInfo extends Component {
   }
 
   render() {
-    const { name, location, phone, email, linkedin } = this.state;
+    const { name, location, phone, email, linkedin, viewForm } = this.state;
 
-    if (this.state.viewForm === false) {
+    if (viewForm === false) {
       return (
         <div className="text-center mb-2">
           <h1 className="title">{name}</h1>

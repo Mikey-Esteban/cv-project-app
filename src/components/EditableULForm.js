@@ -1,6 +1,6 @@
 import React from 'react'
 
-const EditableFormBackup = (props) => {
+const EditableULForm = (props) => {
   console.log(props);
 
   return (
@@ -28,4 +28,4 @@ const EditableFormBackup = (props) => {
   )
 }
 
-export default EditableFormBackup
+export default EditableULForm

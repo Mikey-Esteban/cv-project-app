@@ -2,19 +2,6 @@ import { v4 as uuid } from 'uuid';
 
 const eduTitle = 'Education'
 
-const eduHeaderData = [
-  {
-    id: uuid(),
-    title: 'ABC UNIVERSITY',
-    details: '- Sometown, NH'
-  },
-  {
-    id: uuid(),
-    title: 'Bachelor of Science, Major in Information Technology Program,',
-    details: 'Currently Enrolled, GPA: 3.85/4.0'
-  }
-]
-
 const eduListData = [
   {
     id: uuid(),
@@ -33,4 +20,17 @@ const eduListData = [
   }
 ]
 
-export { eduTitle, eduHeaderData, eduListData }
+const eduHeaderData = [
+  {
+    id: uuid(),
+    isHeader: true,
+    titleOne: 'ABC UNIVERSITY',
+    descriptionOne: '- Sometown, NH',
+    titleTwo: 'Bachelor of Science, Major in Information Technology Program,',
+    descriptionTwo: 'Currently Enrolled, GPA: 3.85/4.0',
+    list: eduListData,
+    viewListForm: false
+  }
+]
+
+export { eduTitle, eduHeaderData }

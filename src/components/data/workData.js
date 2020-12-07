@@ -1,9 +1,7 @@
 import { v4 as uuid } from 'uuid';
 
 const workTitle = 'Computer Programmer'
-
 const workHeaderTitle = 'entry-level computer programmer';
-
 const workListData = [
   {
     id: uuid(),
@@ -26,7 +24,5 @@ const workListData = [
     details: 'team player and multitasker--strive to consistently exceed expectations.'
   }
 ]
-
-
 
 export { workTitle, workHeaderTitle, workListData }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import EditableFormBackup from './EditableFormBackup'
+import EditableULForm from './EditableULForm'
 
-class EditableBackup extends Component {
+class EditableUL extends Component {
 
   constructor(props) {
     super(props)
@@ -78,7 +78,7 @@ class EditableBackup extends Component {
       )
     } else {
       return (
-          <EditableFormBackup titleOne={titleOne} descriptionOne={descriptionOne}
+          <EditableULForm titleOne={titleOne} descriptionOne={descriptionOne}
                 titleTwo={titleTwo} descriptionTwo={descriptionTwo}
                 handleSubmission={this.handleSubmission} />
       )
@@ -87,4 +87,4 @@ class EditableBackup extends Component {
 
 }
 
-export default EditableBackup
+export default EditableUL

@@ -2,18 +2,6 @@ import { v4 as uuid } from 'uuid';
 
 const internTitle = 'Internship'
 
-const internHeaderData = [
-  {
-    id: uuid(),
-    title: 'ABC Company, Sometown, NH'
-  },
-  {
-    id: uuid(),
-    title: 'Computer Programmer Intern,',
-    details: '2016 to Present'
-  }
-]
-
 const internListData = [
   {
     id: uuid(),
@@ -29,4 +17,16 @@ const internListData = [
   }
 ]
 
-export { internTitle, internHeaderData, internListData }
+const internHeaderData = [
+  {
+    id: uuid(),
+    isHeader: true,
+    titleOne: 'ABC Company, Sometown, NH',
+    titleTWo: 'Computer Programmer Intern,',
+    descriptionTwo: '2016 to Present',
+    list: internListData,
+    viewListForm: false
+  }
+]
+
+export { internTitle, internHeaderData }
