@@ -23,8 +23,11 @@ const eduListData = [
 const eduHeaderData = [
   {
     id: uuid(),
-    title: 'ABC UNIVERSITY',
-    details: '- Sometown, NH',
+    isHeader: true,
+    titleOne: 'ABC UNIVERSITY',
+    descriptionOne: '- Sometown, NH',
+    titleTwo: 'Bachelor of Science, Major in Information Technology Program,',
+    descriptionTwo: 'Currently Enrolled, GPA: 3.85/4.0',
     list: eduListData,
     viewListForm: false
   }

@@ -19,7 +19,11 @@ class EditableLI extends Component {
   }
 
   handleDelete = event => {
-    const li = event.target.parentNode.parentNode.parentNode;
+    let li;
+    event.target.tagName === 'I' ?
+    li = event.target.parentNode.parentNode.parentNode :
+    li = event.target.parentNode.parentNode ;
+    console.log(li);
     li.remove();
   }
 
