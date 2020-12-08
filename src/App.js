@@ -1,6 +1,6 @@
 // import './App.css';
 import React from "react";
-import TailwindHW from './components/TailwindHW'
+import Banner from './components/Banner'
 import PersonalInfo from './components/PersonalInfo'
 import SingleUL from './components/SingleUL'
 import MultipleULs from './components/MultipleULs'
@@ -14,7 +14,7 @@ function App() {
 
   return (
     <div className="App">
-      <TailwindHW />
+      <Banner />
       <PersonalInfo />
       <SingleUL title={workTitle} headerTitle={workHeaderTitle} listData={workListData} />
       <MultipleULs title={eduTitle} headerData={eduHeaderData} />
