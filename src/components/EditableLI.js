@@ -14,6 +14,9 @@ class EditableLI extends Component {
     }
   }
 
+  mouseOver = (event) => {
+  }
+
   handleFormSwitch = () => {
     this.setState({ viewForm: true })
   }
@@ -28,7 +31,6 @@ class EditableLI extends Component {
   }
 
   handleSubmission = event => {
-
     const title = document.getElementById('title').value;
     const description = document.getElementById('description').value;
 
@@ -38,16 +40,15 @@ class EditableLI extends Component {
     if (description) this.setState({
       description:description
     })
-
     this.setState({ viewForm: false })
   }
 
   render() {
-    const { id, title, description } = this.state;
+    const { id, title, description, viewForm } = this.state;
 
-    if (this.state.viewForm === false) {
+    if (viewForm === false) {
       return (
-        <li id={id}>
+        <li id={id} onMouseOver={this.mouseOver}>
           <span className="font-semibold text-gray-500">{title} </span>
           <span className="text-gray-500">{description}
             <button className="btn-level ml-1"
@@ -69,7 +70,6 @@ class EditableLI extends Component {
       )
     }
   }
-
 }
 
 export default EditableLI

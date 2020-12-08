@@ -12,7 +12,7 @@ class MultipleULs extends Component {
 
     this.state = {
       id: uuid(),
-      isHeader: props.headerData[0].isHeader,
+      // isHeader: props.headerData[0].isHeader,
       title: props.title,
       headerData: props.headerData,
       viewListForm: props.headerData[0].viewListForm || false,
@@ -58,7 +58,10 @@ class MultipleULs extends Component {
     let headerDataCopy = [...this.state.headerData];
     headerDataCopy.push(newHeader);
 
-    this.setState({ headerData: headerDataCopy })
+    this.setState( {headerData: headerDataCopy}, () => {
+      console.log(this.state.headerData);
+    })
+
   }
 
   handleListSubmission = event => {
@@ -97,28 +100,19 @@ class MultipleULs extends Component {
   }
 
   render() {
-    const { id, isHeader, title, headerData, viewHeaderForm } = this.state;
+    const { id, title, headerData, viewHeaderForm } = this.state;
 
     return (
-      <div className="container px-6 mx-auto max-w-screen-lg mb-6"
-        id={id}>
+      <div className="container px-6 mx-auto max-w-screen-lg mb-6" id={id}>
         <h2 className="header-title mb-4">{title}</h2>
-
-        { isHeader && <button onClick={this.handleHeaderFormSwitch}>
-          <i className="fas fa-plus text-purple-300"></i>
-          <span className="ml-4 text-purple-300">Add {title}</span>
-        </button> }
-
-        { viewHeaderForm && <EditableULForm viewForm={viewHeaderForm}
-            handleSubmission={this.handleHeaderSubmission} />}
 
         { headerData &&
           headerData.map(obj => {
             return (
               <div key={obj.id} id={obj.id}>
-                { isHeader && <EditableUL id={obj.id}
+                <EditableUL id={obj.id}
                   titleOne={obj.titleOne} descriptionOne={obj.descriptionOne}
-                  titleTwo={obj.titleTwo} descriptionTwo={obj.descriptionTwo}/> }
+                  titleTwo={obj.titleTwo} descriptionTwo={obj.descriptionTwo}/>
                 <ul className='list-disc list-inside pl-6'>
                   {
                     obj.list && obj.list.map(info => {
@@ -139,6 +133,13 @@ class MultipleULs extends Component {
             )
           })
         }
+        <button className="mt-3" onClick={this.handleHeaderFormSwitch}>
+          <i className="fas fa-plus text-purple-300"></i>
+          <span className="ml-4 text-purple-300">Add {title}</span>
+        </button>
+
+        { viewHeaderForm && <EditableULForm viewForm={viewHeaderForm}
+            handleSubmission={this.handleHeaderSubmission} />}
       </div>
     )
   }
