@@ -8,7 +8,7 @@ const Banner = () => {
           Simple Entry Level Programmer Template
         </h1>
         <p className="text-base text-gray-500 leading-normal">
-          check out the code on <a href="#" className="text-black text-purple-500">github</a>
+          check out the code on <a href="https://github.com/Mikey-Esteban/cv-project-app" className="text-black text-purple-500">github</a>
         </p>
       </div>
     </div>
