@@ -4,16 +4,20 @@
   @apply block text-white uppercase text-xs mx-auto p-2 rounded;
 }
 .btn-level {
-  @apply inline-block text-white uppercase text-xs mx-auto p-1 rounded text-purple-300;
+  @apply inline-block uppercase text-xs mx-auto p-1 rounded text-purple-300;
 }
 .btn-purple {
   @apply bg-purple-300;
 }
-
+.btn-gray {
+  @apply bg-gray-300
+}
 .btn-purple:hover {
   @apply hover:bg-purple-500;
 }
-
+.btn-gray:hover {
+  @apply hover:bg-gray-500;
+}
 .title {
   @apply text-indigo-400 text-lg font-medium uppercase
 }

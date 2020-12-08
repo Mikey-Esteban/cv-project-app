@@ -23,6 +23,11 @@ class SingleUL extends Component {
   handleListSubmission = event => {
     event.preventDefault();
 
+    this.setState({ viewForm: false })
+    // handle cancel button on form
+    const viewForm = event.target.querySelector('#viewForm').value
+    if (viewForm === 'false') return
+
     // create new list item
     const id = uuid();
     const title = event.target.querySelector('#title').value;
@@ -34,12 +39,11 @@ class SingleUL extends Component {
     listDataCopy.push(newListItem);
 
     this.setState({ list: listDataCopy })
-    this.setState({ viewForm: false })
   }
 
 
   render() {
-    const { title, headerTitle, list } = this.state;
+    const { title, headerTitle, list, viewForm } = this.state;
     return (
       <div className="container px-6 mx-auto max-w-screen-lg mb-6">
         <h2 className="header-title mb-4">{title}</h2>
@@ -56,7 +60,7 @@ class SingleUL extends Component {
           <i className="fas fa-plus text-purple-300"></i>
           <span className="ml-4 text-purple-300 text-sm">Add to list</span>
         </button>
-        { this.state.viewForm && <EditableLIForm handleSubmission={this.handleListSubmission} />}
+        { viewForm && <EditableLIForm viewForm={viewForm} handleSubmission={this.handleListSubmission} />}
       </div>
     )
   }

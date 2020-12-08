@@ -37,6 +37,11 @@ class MultipleULs extends Component {
 
   handleHeaderSubmission = event => {
     event.preventDefault();
+    this.setState({ viewHeaderForm: false })
+
+    // handle cancel button on form
+    const viewForm = event.target.querySelector('#viewForm').value
+    if (viewForm === 'false') return
 
     // create new header
     const id = uuid();
@@ -54,11 +59,23 @@ class MultipleULs extends Component {
     headerDataCopy.push(newHeader);
 
     this.setState({ headerData: headerDataCopy })
-    this.setState({ viewHeaderForm: false })
   }
 
   handleListSubmission = event => {
     event.preventDefault();
+
+    // handle cancel button on form
+    const viewForm = event.target.querySelector('#viewForm').value
+    if (viewForm === 'false') {
+      // grab targetDOM
+      const targetDiv = event.target.parentNode.parentNode;
+      // grab header obj
+      const targetObject = this.state.headerData.filter(obj => obj.id === targetDiv.id)[0];
+      targetObject.viewListForm = false;
+      // nothing has change, just re render
+      this.setState(this.state);
+      return
+    }
 
     // create new list item
     const id = uuid();
@@ -74,9 +91,8 @@ class MultipleULs extends Component {
     const targetObject = headerDataCopy.filter(obj => obj.id === targetDiv.id)[0];
     // push new item to correct obj.list
     targetObject.list.push(newListItem);
-
     targetObject.viewListForm = false;
-
+    // update header
     this.setState({ headerData: headerDataCopy })
   }
 
@@ -93,7 +109,8 @@ class MultipleULs extends Component {
           <span className="ml-4 text-purple-300">Add {title}</span>
         </button> }
 
-        { viewHeaderForm && <EditableULForm handleSubmission={this.handleHeaderSubmission} />}
+        { viewHeaderForm && <EditableULForm viewForm={viewHeaderForm}
+            handleSubmission={this.handleHeaderSubmission} />}
 
         { headerData &&
           headerData.map(obj => {
@@ -116,7 +133,8 @@ class MultipleULs extends Component {
                   <i className="fas fa-plus text-purple-300"></i>
                   <span className="ml-4 text-purple-300 text-sm">Add to list</span>
                 </button>
-                { obj.viewListForm && <EditableLIForm handleSubmission={this.handleListSubmission} />}
+                { obj.viewListForm && <EditableLIForm viewForm={obj.viewListForm}
+                    handleSubmission={this.handleListSubmission} />}
               </div>
             )
           })
