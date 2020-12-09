@@ -1,18 +1,19 @@
-import React from 'react'
+import React , {useState} from 'react'
 
 const EditableLIForm = (props) => {
 
+  const [cancel, setCancel] = useState(false);
+
   const handleCancel = event => {
-    const viewForm = document.querySelector('#viewForm');
-    viewForm.value = false;
+    setCancel(true);
   }
 
   return (
     <div className='text-center'>
       <form onSubmit={props.handleSubmission}>
         <div>
-          <input className='border w-1/2' type="hidden" name="viewForm" id="viewForm"
-            value={props.viewForm}/>
+          <input className='border w-1/2' type="hidden" name="cancel" id="cancel"
+            value={cancel}/>
         </div>
         <div>
           <input className='border text-center w-2/3' type="text" name="title" id="title"

@@ -1,47 +1,36 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import EditableUL from './EditableUL'
 import EditableLI from './EditableLI'
 import EditableULForm from './EditableULForm'
 import EditableLIForm from './EditableLIForm'
 import { v4 as uuid } from 'uuid';
 
-class MultipleULs extends Component {
+const MultipleULs = (props) => {
 
-  constructor(props) {
-    super(props)
+  const [ listData, setListData ] = useState(props.listData);
+  const [ viewHeaderForm, setViewHeaderForm ] = useState(false);
 
-    this.state = {
-      id: uuid(),
-      // isHeader: props.headerData[0].isHeader,
-      title: props.title,
-      headerData: props.headerData,
-      viewListForm: props.headerData[0].viewListForm || false,
-    }
-  }
+  const handleHeaderFormSwitch = () => {
+    setViewHeaderForm(true);
+  };
 
-  handleHeaderFormSwitch = () => {
-    this.setState({ viewHeaderForm: true })
-  }
-
-  handleListFormSwitch = event => {
-    // make copy of headerData array
-    let headerDataCopy = [...this.state.headerData];
-    // grab targetDOM
+  const handleListFormSwitch = event => {
+    const listDataCopy = [...listData];
+    // grab targetDOM to change viewListForm
     const targetDiv = event.target.parentNode.parentNode;
-    // grab header obj
-    const targetObject = headerDataCopy.filter(obj => obj.id === targetDiv.id)[0];
+    const targetObject = listDataCopy.filter(obj => obj.id === targetDiv.id)[0];
     targetObject.viewListForm = true;
-
-    this.setState({ headerData: headerDataCopy })
+    // update listData
+    setListData(listDataCopy);
   }
 
-  handleHeaderSubmission = event => {
+  const handleHeaderSubmission = event => {
     event.preventDefault();
-    this.setState({ viewHeaderForm: false })
+    setViewHeaderForm(false);
 
     // handle cancel button on form
-    const viewForm = event.target.querySelector('#viewForm').value
-    if (viewForm === 'false') return
+    const cancel = event.target.querySelector('#cancel').value
+    if (cancel === 'true') return
 
     // create new header
     const id = uuid();
@@ -54,96 +43,79 @@ class MultipleULs extends Component {
           titleTwo: titleTwo, descriptionTwo: descriptionTwo,
           list: [], viewListForm: false };
 
-    // copy headerData array
-    let headerDataCopy = [...this.state.headerData];
-    headerDataCopy.push(newHeader);
-
-    this.setState( {headerData: headerDataCopy}, () => {
-      console.log(this.state.headerData);
-    })
-
+    // copy listData array
+    const listDataCopy = [...listData];
+    listDataCopy.push(newHeader);
+    // update listData
+    setListData(listDataCopy);
   }
 
-  handleListSubmission = event => {
+  const handleListSubmission = event => {
     event.preventDefault();
 
-    // handle cancel button on form
-    const viewForm = event.target.querySelector('#viewForm').value
-    if (viewForm === 'false') {
-      // grab targetDOM
-      const targetDiv = event.target.parentNode.parentNode;
-      // grab header obj
-      const targetObject = this.state.headerData.filter(obj => obj.id === targetDiv.id)[0];
-      targetObject.viewListForm = false;
-      // nothing has change, just re render
-      this.setState(this.state);
-      return
-    }
-
-    // create new list item
-    const id = uuid();
-    const title = event.target.querySelector('#title').value;
-    const description = event.target.querySelector('#description').value;
-    const newListItem = { id: id, title: title, details: description };
-
-    // make copy of headerData array
-    let headerDataCopy = [...this.state.headerData];
-    // grab targetDOM
+    const listDataCopy = [...listData];
+    // grab targeObject and change viewListForm
     const targetDiv = event.target.parentNode.parentNode;
-    // grab header obj
-    const targetObject = headerDataCopy.filter(obj => obj.id === targetDiv.id)[0];
-    // push new item to correct obj.list
-    targetObject.list.push(newListItem);
+    const targetObject = listDataCopy.filter(obj => obj.id === targetDiv.id)[0];
     targetObject.viewListForm = false;
-    // update header
-    this.setState({ headerData: headerDataCopy })
+
+    const cancel = event.target.querySelector('#cancel').value
+    // if not cancel, create new list item
+    if (cancel === 'false') {
+      const id = uuid();
+      const title = event.target.querySelector('#title').value;
+      const description = event.target.querySelector('#description').value;
+      const newListItem = { id: id, title: title, details: description };
+      // push new item to correct obj.list
+      targetObject.list.push(newListItem);
+    }
+    // update listData
+    setListData(listDataCopy);
   }
 
-  render() {
-    const { id, title, headerData, viewHeaderForm } = this.state;
+  const { id, title } = props;
 
-    return (
-      <div className="container px-6 mx-auto max-w-screen-lg mb-6" id={id}>
-        <h2 className="header-title mb-4">{title}</h2>
+  return (
+    <div className="container px-6 mx-auto max-w-screen-lg mb-6" id={id}>
+      <h2 className="header-title mb-4">{title}</h2>
 
-        { headerData &&
-          headerData.map(obj => {
-            return (
-              <div key={obj.id} id={obj.id}>
-                <EditableUL id={obj.id}
-                  titleOne={obj.titleOne} descriptionOne={obj.descriptionOne}
-                  titleTwo={obj.titleTwo} descriptionTwo={obj.descriptionTwo}/>
-                <ul className='list-disc list-inside pl-6'>
-                  {
-                    obj.list && obj.list.map(info => {
-                      return (
-                        <EditableLI key={info.id} id={info.id} title={info.title} description={info.details} />
-                      )
-                    })
-                  }
-                </ul>
-                <button className='ml-6'
-                  onClick={this.handleListFormSwitch}>
-                  <i className="fas fa-plus text-purple-300"></i>
-                  <span className="ml-4 text-purple-300 text-sm">Add to list</span>
-                </button>
-                { obj.viewListForm && <EditableLIForm viewForm={obj.viewListForm}
-                    handleSubmission={this.handleListSubmission} />}
-              </div>
-            )
-          })
-        }
-        <button className="mt-3" onClick={this.handleHeaderFormSwitch}>
-          <i className="fas fa-plus text-purple-300"></i>
-          <span className="ml-4 text-purple-300">Add {title}</span>
-        </button>
+      { listData &&
+        listData.map(obj => {
+          return (
+            <div key={obj.id} id={obj.id}>
+              <EditableUL id={obj.id}
+                titleOne={obj.titleOne} descriptionOne={obj.descriptionOne}
+                titleTwo={obj.titleTwo} descriptionTwo={obj.descriptionTwo}/>
+              <ul className='list-disc list-inside pl-6'>
+                {
+                  obj.list && obj.list.map(info => {
+                    return (
+                      <EditableLI key={info.id} id={info.id} title={info.title} description={info.details} />
+                    )
+                  })
+                }
+              </ul>
+              <button className='ml-6'
+                onClick={handleListFormSwitch}>
+                <i className="fas fa-plus text-purple-300"></i>
+                <span className="ml-4 text-purple-300 text-sm">Add to list</span>
+              </button>
 
-        { viewHeaderForm && <EditableULForm viewForm={viewHeaderForm}
-            handleSubmission={this.handleHeaderSubmission} />}
-      </div>
-    )
-  }
+              { obj.viewListForm && <EditableLIForm handleSubmission={handleListSubmission} />}
 
+            </div>
+          )
+        })
+      }
+      <button className="mt-3" onClick={handleHeaderFormSwitch}>
+        <i className="fas fa-plus text-purple-300"></i>
+        <span className="ml-4 text-purple-300">Add {title}</span>
+      </button>
+
+      { viewHeaderForm && <EditableULForm handleSubmission={handleHeaderSubmission} />}
+
+    </div>
+  )
 }
 
 export default MultipleULs

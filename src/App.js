@@ -17,8 +17,8 @@ function App() {
       <Banner />
       <PersonalInfo />
       <SingleUL title={workTitle} headerTitle={workHeaderTitle} listData={workListData} />
-      <MultipleULs title={eduTitle} headerData={eduHeaderData} />
-      <MultipleULs title={internTitle} headerData={internHeaderData} />
+      <MultipleULs title={eduTitle} listData={eduHeaderData} />
+      <MultipleULs title={internTitle} listData={internHeaderData} />
       <SingleUL title={techTitle} listData={techListData}/>
     </div>
   );
