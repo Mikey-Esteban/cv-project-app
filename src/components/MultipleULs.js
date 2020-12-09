@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import EditableUL from './EditableUL'
-import EditableLI from './EditableLI'
+import InitialUL from './InitialUL'
+import AddButton from './AddButton'
 import EditableULForm from './EditableULForm'
 import EditableLIForm from './EditableLIForm'
 import { v4 as uuid } from 'uuid';
@@ -78,7 +79,6 @@ const MultipleULs = (props) => {
   return (
     <div className="container px-6 mx-auto max-w-screen-lg mb-6" id={id}>
       <h2 className="header-title mb-4">{title}</h2>
-
       { listData &&
         listData.map(obj => {
           return (
@@ -86,34 +86,15 @@ const MultipleULs = (props) => {
               <EditableUL id={obj.id}
                 titleOne={obj.titleOne} descriptionOne={obj.descriptionOne}
                 titleTwo={obj.titleTwo} descriptionTwo={obj.descriptionTwo}/>
-              <ul className='list-disc list-inside pl-6'>
-                {
-                  obj.list && obj.list.map(info => {
-                    return (
-                      <EditableLI key={info.id} id={info.id} title={info.title} description={info.details} />
-                    )
-                  })
-                }
-              </ul>
-              <button className='ml-6'
-                onClick={handleListFormSwitch}>
-                <i className="fas fa-plus text-purple-300"></i>
-                <span className="ml-4 text-purple-300 text-sm">Add to list</span>
-              </button>
-
+              <InitialUL list={obj.list} />
+              <AddButton clickHandler={handleListFormSwitch} buttonSpacing={'ml-6'} text={'Add to list'} textSize={'text-sm'}/>
               { obj.viewListForm && <EditableLIForm handleSubmission={handleListSubmission} />}
-
             </div>
           )
         })
       }
-      <button className="mt-3" onClick={handleHeaderFormSwitch}>
-        <i className="fas fa-plus text-purple-300"></i>
-        <span className="ml-4 text-purple-300">Add {title}</span>
-      </button>
-
+      <AddButton clickHandler={handleHeaderFormSwitch} buttonSpacing={"mt-3"} text={`Add ${title}`}/>
       { viewHeaderForm && <EditableULForm handleSubmission={handleHeaderSubmission} />}
-
     </div>
   )
 }

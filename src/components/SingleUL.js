@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import EditableLI from './EditableLI'
+import InitialUL from './InitialUL'
+import AddButton from './AddButton'
 import EditableLIForm from './EditableLIForm'
 import { v4 as uuid } from 'uuid';
 
@@ -36,19 +37,9 @@ const SingleUL = props => {
   return (
     <div className="container px-6 mx-auto max-w-screen-lg mb-6">
       <h2 className="header-title mb-4">{props.title}</h2>
-
       { props.headerTitle && <h1 className='text-center title'>{props.headerTitle}</h1> }
-
-      <ul className='list-disc list-inside pl-6'>
-      {
-         list.map(item => <EditableLI key={item.id} id={item.id} title={item.title} description={item.details} />)
-      }
-      </ul>
-      <button className='ml-6'
-        onClick={ handleFormSwitch }>
-        <i className="fas fa-plus text-purple-300"></i>
-        <span className="ml-4 text-purple-300 text-sm">Add to list</span>
-      </button>
+      <InitialUL list={list} />
+      <AddButton clickHandler={handleFormSwitch} buttonSpacing={'ml-6'} text={'Add to list'} textSize={'text-sm'} />
       { viewForm && <EditableLIForm handleSubmission={handleListSubmission} />}
     </div>
   )
